@@ -46,7 +46,7 @@ function loadPokemonDetailPage(pokemonId) {
                     <h2>Base Stats</h2>
                     <ol class="pokemon-stats-list">
                         <li class="stat">
-                            <span class="stat-name">HP:</span>
+                            <span class="stat-name">health:</span>
                             <span>${pokemon.stats['health']}</span>
                         </li>
                         <li class="stat">
@@ -80,7 +80,7 @@ function loadPokemonDetailPage(pokemonId) {
         `
         let pokemonBaseName = pokemon.name;
         let pokemonName = pokemonBaseName.charAt(0).toUpperCase() + pokemonBaseName.slice(1);
-        document.title = `Pokédex - ${pokemonName} Details`
+        document.title = `Pokédex - ${pokemonName}`
     })
 }
 

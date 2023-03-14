@@ -10,6 +10,11 @@
     margin-bottom: 10px;
 }
 
+.tip-note {
+    margin-left: 1rem;
+    color: #00000038;
+}
+
 .pokemons {
     display: grid;
     grid-template-columns: 1fr;
@@ -35,6 +40,10 @@
     background-position: bottom right;
     background-size: 7rem;
     overflow: hidden;
+}
+
+.pokemon:hover {
+    filter: brightness(90%);
 }
 
 .pokemon .number {

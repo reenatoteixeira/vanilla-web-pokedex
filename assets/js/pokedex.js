@@ -1,5 +1,7 @@
 const POKEMON_LIST = document.getElementById('pokemonListHtml');
+const LOAD_MORE_BUTTON = document.getElementById('loadMoreBtn');
 
+const MAX_POKEMONS_SHOWN = 151;
 const LIMIT = 10;
 let offset = 0;
 
@@ -26,6 +28,21 @@ function loadPokemonsList(offset, limit) {
 
 function main() {
     loadPokemonsList(offset, LIMIT);
+
+    LOAD_MORE_BUTTON.addEventListener('click', () => {
+        offset += LIMIT;
+        const POKEMONS_NEXT_PAGE = offset + LIMIT;
+
+        if (POKEMONS_NEXT_PAGE >= MAX_POKEMONS_SHOWN) {
+            const NEW_POKEMONS_SHOWN = MAX_POKEMONS_SHOWN - offset;
+
+            loadPokemonsList(offset, NEW_POKEMONS_SHOWN);
+
+            LOAD_MORE_BUTTON.parentElement.removeChild(LOAD_MORE_BUTTON);
+        } else {
+            loadPokemonsList(offset, LIMIT);
+        }
+    })
 }
 
 main();

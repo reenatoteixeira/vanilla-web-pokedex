@@ -78,6 +78,9 @@ function loadPokemonDetailPage(pokemonId) {
             </div>
         </section>
         `
+        let pokemonBaseName = pokemon.name;
+        let pokemonName = pokemonBaseName.charAt(0).toUpperCase() + pokemonBaseName.slice(1);
+        document.title = `Pokédex - ${pokemonName} Details`
     })
 }
 

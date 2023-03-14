@@ -1,5 +1,5 @@
 
-![image]()
+![image](https://github.com/reenatoteixeira/vanilla-web-pokedex/blob/main/assets/images/pokedex-logo.png)
 -------
 
 ## 📌 Summary

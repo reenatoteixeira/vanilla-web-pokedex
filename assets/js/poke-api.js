@@ -28,7 +28,7 @@ POKE_API.getPokemonsList = (offset = 0, limit = 0) => {
     return fetch(URL)
         .then((response) => response.json())
         .then((jsonBody) => jsonBody.results)
-        .then((pokemonsList) => pokemonsList.map(PokeAPI.getPokemonInfos))
+        .then((pokemonsList) => pokemonsList.map(POKE_API.getPokemonInfos))
         .then((pokemonDetailsListRequests) => Promise.all(pokemonDetailsListRequests))
         .then((pokemonDetailsList) => pokemonDetailsList)
         .catch((error) => console.error(error));

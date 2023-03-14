@@ -30,8 +30,11 @@
     margin: .5rem;
     padding: 1rem;
     border-radius: 1rem;
+    background-image: url('../images/pokemon-card-bg.png');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 7rem;
     overflow: hidden;
-    background-color: grey;
 }
 
 .pokemon .number {

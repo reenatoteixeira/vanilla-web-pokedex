@@ -1,9 +1,18 @@
 const POKEMON_LIST = document.getElementById('pokemonListHtml');
 const LOAD_MORE_BUTTON = document.getElementById('loadMoreBtn');
+const TOP_BUTTON = document.getElementById('topBtn');
 
 const MAX_POKEMONS_SHOWN = 151;
 const LIMIT = 10;
 let offset = 0;
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        TOP_BUTTON.style.display = 'block';
+    } else {
+        TOP_BUTTON.style.display = 'none';
+    }
+}
 
 function loadPokemonsList(offset, limit) {
     POKE_API.getPokemonsList(offset, limit).then((pokemonsList = []) => {
@@ -29,6 +38,8 @@ function loadPokemonsList(offset, limit) {
 function main() {
     loadPokemonsList(offset, LIMIT);
 
+    window.onscroll = () => scrollFunction();
+
     LOAD_MORE_BUTTON.addEventListener('click', () => {
         offset += LIMIT;
         const POKEMONS_NEXT_PAGE = offset + LIMIT;
@@ -42,6 +53,11 @@ function main() {
         } else {
             loadPokemonsList(offset, LIMIT);
         }
+    })
+
+    TOP_BUTTON.addEventListener('click', () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     })
 }
 

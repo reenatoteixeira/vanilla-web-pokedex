@@ -20,21 +20,21 @@ function loadPokemonDetailPage(pokemonId) {
     POKE_API.getPokemonDetails(pokemonId).then((pokemon) => {
         POKEMON_DETAIL_SECTION.className = `content mod-background ${pokemon.mainType}`;
         POKEMON_ID.innerText = `#${pokemon.id}`;
-        POKEMON_NAME.innerText = `${pokemon.name}`;
+        POKEMON_NAME.innerText = pokemon.name;
         POKEMON_TYPES.innerHTML = `${pokemon.types.map((type) => `<li class="type">${type}</li>`).join('')}`;
-        POKEMON_PICTURE.src = `${pokemon.picture}`;
+        POKEMON_PICTURE.src = pokemon.picture;
         POKEMON_PICTURE.alt = `${pokemon.name} picture`;
         POKEMON_STATS_SECTION.className = `mod-pokemon-detail ${pokemon.mainType}`;
         POKEMON_HEIGHT.innerText = `${pokemon.height} m`;
         POKEMON_WEIGHT.innerText = `${pokemon.weight} kg`
         POKEMON_ABILITIES.innerText = `${pokemon.abilities.map((abilitie) => abilitie).join(', ')}`;
-        POKEMON_HEALTH.innerText = `${pokemon.stats['health']}`;
-        POKEMON_ATTACK.innerText = `${pokemon.stats['attack']}`;
-        POKEMON_DEFENSE.innerText = `${pokemon.stats['defense']}`;
-        POKEMON_SP_ATTACK.innerText = `${pokemon.stats['spAttack']}`;
-        POKEMON_SP_DEFENSE.innerText = `${pokemon.stats['spDefense']}`;
-        POKEMON_SPEED.innerText = `${pokemon.stats['speed']}`;
-        POKEMON_TOTAL_STATS.innerText = `${pokemon.stats['total']}`;
+        POKEMON_HEALTH.innerText = pokemon.stats['health'];
+        POKEMON_ATTACK.innerText = pokemon.stats['attack'];
+        POKEMON_DEFENSE.innerText = pokemon.stats['defense'];
+        POKEMON_SP_ATTACK.innerText = pokemon.stats['spAttack'];
+        POKEMON_SP_DEFENSE.innerText = pokemon.stats['spDefense'];
+        POKEMON_SPEED.innerText = pokemon.stats['speed'];
+        POKEMON_TOTAL_STATS.innerText = pokemon.stats['total'];
 
         let pokemonBaseName = pokemon.name;
         let pokemonName = pokemonBaseName.charAt(0).toUpperCase() + pokemonBaseName.slice(1);

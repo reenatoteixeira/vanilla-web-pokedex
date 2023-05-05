@@ -1,31 +1,31 @@
 const POKE_API = {};
 
 function convertPokemonModel(pokeApiPokemon) {
-    const POKEMON = new Pokemon();
+    const pokemon = new Pokemon();
 
-    POKEMON.id = pokeApiPokemon.id;
-    POKEMON.name = pokeApiPokemon.name;
+    pokemon.id = pokeApiPokemon.id;
+    pokemon.name = pokeApiPokemon.name;
 
-    const TYPES = pokeApiPokemon.types.map((typeSlot) => typeSlot.type.name);
-    const [MAIN_TYPE] = TYPES;
+    const types = pokeApiPokemon.types.map((typeSlot) => typeSlot.type.name);
+    const [MAIN_TYPE] = types;
 
-    POKEMON.types = TYPES;
-    POKEMON.mainType = MAIN_TYPE;
-    POKEMON.picture = pokeApiPokemon.sprites.other.dream_world.front_default;
-    POKEMON.abilities = pokeApiPokemon.abilities.map((abilitieSlot) => abilitieSlot.ability.name);
-    POKEMON.height = (pokeApiPokemon.height * 10) / 100;
-    POKEMON.weight = (pokeApiPokemon.weight * 100) / 1000;
-    POKEMON.stats['health'] = pokeApiPokemon.stats[0].base_stat;
-    POKEMON.stats['attack'] = pokeApiPokemon.stats[1].base_stat;
-    POKEMON.stats['defense'] = pokeApiPokemon.stats[2].base_stat;
-    POKEMON.stats['spAttack'] = pokeApiPokemon.stats[3].base_stat;
-    POKEMON.stats['spDefense'] = pokeApiPokemon.stats[4].base_stat;
-    POKEMON.stats['speed'] = pokeApiPokemon.stats[5].base_stat;
-    POKEMON.stats['total'] = POKEMON.stats['health'] + POKEMON.stats['attack'] +
-        POKEMON.stats['defense'] + POKEMON.stats['spAttack'] +
-        POKEMON.stats['spDefense'] + POKEMON.stats['speed']
+    pokemon.types = types;
+    pokemon.mainType = MAIN_TYPE;
+    pokemon.picture = pokeApiPokemon.sprites.other.dream_world.front_default;
+    pokemon.abilities = pokeApiPokemon.abilities.map((abilitieSlot) => abilitieSlot.ability.name);
+    pokemon.height = (pokeApiPokemon.height * 10) / 100;
+    pokemon.weight = (pokeApiPokemon.weight * 100) / 1000;
+    pokemon.stats['health'] = pokeApiPokemon.stats[0].base_stat;
+    pokemon.stats['attack'] = pokeApiPokemon.stats[1].base_stat;
+    pokemon.stats['defense'] = pokeApiPokemon.stats[2].base_stat;
+    pokemon.stats['spAttack'] = pokeApiPokemon.stats[3].base_stat;
+    pokemon.stats['spDefense'] = pokeApiPokemon.stats[4].base_stat;
+    pokemon.stats['speed'] = pokeApiPokemon.stats[5].base_stat;
+    pokemon.stats['total'] = pokemon.stats['health'] + pokemon.stats['attack'] +
+        pokemon.stats['defense'] + pokemon.stats['spAttack'] +
+        pokemon.stats['spDefense'] + pokemon.stats['speed']
 
-    return POKEMON;
+    return pokemon;
 }
 
 POKE_API.getPokemonInfos = (pokemon) => {
@@ -42,7 +42,6 @@ POKE_API.getPokemonsList = (offset = 0, limit = 0) => {
         .then((jsonBody) => jsonBody.results)
         .then((pokemonsList) => pokemonsList.map(POKE_API.getPokemonInfos))
         .then((pokemonDetailsListRequests) => Promise.all(pokemonDetailsListRequests))
-        .then((pokemonDetailsList) => pokemonDetailsList)
         .catch((error) => console.error(error));
 }
 
@@ -52,6 +51,5 @@ POKE_API.getPokemonDetails = (pokemonId) => {
     return fetch(URL)
         .then((response) => response.json())
         .then(convertPokemonModel)
-        .then((pokemon) => pokemon)
         .catch((error) => console.error(error));
 }
